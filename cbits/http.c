@@ -67,7 +67,9 @@
 #include <sys/socket.h>
 
 #include <ctype.h>
+#ifndef __APPLE__
 #include <libio.h>
+#endif
 #include <err.h>
 #include <errno.h>
 #include <locale.h>
@@ -321,12 +323,16 @@ _http_funopen(conn_t *conn, int chunked)
 	}
 	io->conn = conn;
 	io->chunked = chunked;
-    cookie_io_functions_t cookie;
-    cookie.read = (cookie_read_function_t *)_http_readfn;
-    cookie.write = (cookie_write_function_t *)_http_writefn;
-    cookie.seek = (cookie_seek_function_t *)NULL;
-    cookie.close = (cookie_close_function_t *)_http_closefn;
-    f = fopencookie(io, "rw", cookie);
+#ifndef __APPLE__
+	cookie_io_functions_t cookie;
+	cookie.read = (cookie_read_function_t *)_http_readfn;
+	cookie.write = (cookie_write_function_t *)_http_writefn;
+	cookie.seek = (cookie_seek_function_t *)NULL;
+	cookie.close = (cookie_close_function_t *)_http_closefn;
+	f = fopencookie(io, "rw", cookie);
+#else
+	f = funopen(io, _http_readfn, _http_writefn, NULL, _http_closefn);
+#endif
 	if (f == NULL) {
 		_download_syserr();
 		free(io);

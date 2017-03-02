@@ -63,7 +63,9 @@
 #include <netinet/in.h>
 
 #include <ctype.h>
+#ifndef __APPLE__
 #include <libio.h>
+#endif
 #include <err.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -582,12 +584,16 @@ _ftp_setup(conn_t *cconn, conn_t *dconn, int mode)
 	io->dconn = dconn;
 	io->dir = mode;
 	io->eof = io->err = 0;
-    cookie_io_functions_t cookies;
-    cookies.read = (cookie_read_function_t *)_ftp_readfn;
-    cookies.write = (cookie_write_function_t *)_ftp_writefn;
-    cookies.seek = (cookie_seek_function_t *)_ftp_seekfn;
-    cookies.close = (cookie_close_function_t *)_ftp_closefn;
-    f = fopencookie(io, "rw", cookies);
+#ifndef __APPLE__
+	cookie_io_functions_t cookies;
+	cookies.read = (cookie_read_function_t *)_ftp_readfn;
+	cookies.write = (cookie_write_function_t *)_ftp_writefn;
+	cookies.seek = (cookie_seek_function_t *)_ftp_seekfn;
+	cookies.close = (cookie_close_function_t *)_ftp_closefn;
+	f = fopencookie(io, "rw", cookies);
+#else
+	f = funopen(io, _ftp_readfn, _ftp_writefn, _ftp_seekfn, _ftp_closefn);
+#endif
 	if (f == NULL)
 		free(io);
 	return (f);

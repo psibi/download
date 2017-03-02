@@ -1,5 +1,5 @@
 name:            download
-version:         0.3.2.4
+version:         0.3.2.5
 homepage:        https://github.com/psibi/download
 synopsis:        High-level file download based on URLs
 description:     High-level file download based on URLs
@@ -10,7 +10,7 @@ license:         BSD3
 license-file:    LICENSE
 copyright:       (c) 2008-2011, Don Stewart <dons00@gmail.com>
 author:          Don Stewart
-maintainer:      Sibi Prabakaran <sibi@psibi.in>, Don Stewart <dons00@gmail.com>
+maintainer:      Sibi Prabakaran <sibi@psibi.in>
 cabal-version:   >= 1.8
 build-type:      Simple
 tested-with:     GHC ==7.10.3
