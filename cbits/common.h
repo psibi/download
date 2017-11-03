@@ -33,6 +33,8 @@
 #ifndef COMMON_H_INCLUDED
 #define COMMON_H_INCLUDED
 
+#include <stdint.h>
+
 /* BSD seems to use this alot - we don't have it */
 #define __DECONST(type, v) (type)((uintptr_t)(void *)(v))
 
