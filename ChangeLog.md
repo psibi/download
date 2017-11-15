@@ -1,3 +1,7 @@
+## 0.3.2.6
+
+* Fix Arch Linux build [#15](https://github.com/psibi/download/pull/15)
+
 ## 0.3.2.5
 
 * OSX Support added. Thanks to Brian Crowder.

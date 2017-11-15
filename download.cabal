@@ -1,5 +1,5 @@
 name:            download
-version:         0.3.2.5
+version:         0.3.2.6
 homepage:        https://github.com/psibi/download
 synopsis:        High-level file download based on URLs
 description:     High-level file download based on URLs
