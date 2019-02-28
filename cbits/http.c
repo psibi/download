@@ -68,7 +68,7 @@
 
 #include <ctype.h>
 #ifndef __APPLE__
-#include <libio.h>
+#include <stdio.h>
 #endif
 #include <err.h>
 #include <errno.h>
