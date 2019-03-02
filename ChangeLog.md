@@ -1,3 +1,7 @@
+## 0.3.2.7
+
+* Fix compilation error with libio.hs [#18](https://github.com/psibi/download/pull/18)
+
 ## 0.3.2.6
 
 * Fix Arch Linux build [#15](https://github.com/psibi/download/pull/15)
